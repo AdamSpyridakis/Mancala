@@ -9,6 +9,10 @@ void startGame(board *ptrBoard)
     while (gameWon(ptrBoard, player))
     {
         selectedPile = getMove(player, ptrBoard);
+        /* Quit */
+        if(selectedPile == -1){
+            return;
+        }
         player = processMove(ptrBoard, player, selectedPile);
         printBoard(ptrBoard);
     }
@@ -33,15 +37,46 @@ bool processMove(board *ptrBoard, bool player, int selectedPile)
         ptrBoard->setRockValue(selectedPile, currentVal);
         distribute--;
     }
+    // Check for a capture
+    int currentScore;
+    if (player)
+    {
+        // If the last rock was placed on your side, and there were no rocks present before
+        if ((selectedPile <= 6 && selectedPile >= 1) && ptrBoard->getRockValue(selectedPile) == 1)
+        {
+            currentScore = ptrBoard->getRockValue(7);
+            // Add the rocks across to your pile
+            ptrBoard->setRockValue(7, currentScore + ptrBoard->getRockValue(14 - selectedPile) + 1);
+            ptrBoard->setRockValue(14 - selectedPile, 0);
+            ptrBoard->setRockValue(selectedPile, 0);
+        }
+    }
+    else
+    {
+        // If the last rock was placed on your side, and there were no rocks present before
+        if ((selectedPile <= 13 && selectedPile >= 8) && ptrBoard->getRockValue(selectedPile) == 1)
+        {
+            currentScore = ptrBoard->getRockValue(0);
+            // Add the rocks across to your pile
+            ptrBoard->setRockValue(0, currentScore + ptrBoard->getRockValue(14 - selectedPile) + 1);
+            ptrBoard->setRockValue(14 - selectedPile, 0);
+            ptrBoard->setRockValue(selectedPile, 0);
+        }
+    }
+
     // Check whether player gets another turn
-    if(player) {
-        if(selectedPile == 7) {
+    if (player)
+    {
+        if (selectedPile == 7)
+        {
             return true;
         }
         return false;
     }
-    else {
-        if (selectedPile == 0) {
+    else
+    {
+        if (selectedPile == 0)
+        {
             return false;
         }
         return true;

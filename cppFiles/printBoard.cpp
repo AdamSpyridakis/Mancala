@@ -78,6 +78,11 @@ int getMove(bool player, board *ptr)
                 movecheck = false;
                 numberValue = index - 64;
             }
+            // Quit if 'Q'
+            else if (index == 81)
+            {
+                return -1;
+            }
             else
             {
                 std::cout << "Invalid move. Try again";
@@ -94,6 +99,11 @@ int getMove(bool player, board *ptr)
             {
                 movecheck = false;
                 numberValue = index - 63;
+            }
+            // Quit if 'Q'
+            else if (index == 81)
+            {
+                return -1;
             }
             else
             {
