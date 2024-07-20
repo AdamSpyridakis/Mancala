@@ -5,7 +5,7 @@ void printBoard(board *ptr)
 {
     // Make the indices for the top - to let players know what pile they select
     std::cout << "       ";
-    for (char letter{65}; letter < 71; letter++)
+    for (char letter{70}; letter > 64; letter--)
     {
         std::cout << letter << letter << "   ";
     }
@@ -61,10 +61,11 @@ void printBoard(board *ptr)
 }
 
 // Send a move request to the terminal
-char getMove(bool player, board *ptr)
+int getMove(bool player, board *ptr)
 {
     char index{0};
     bool movecheck{true};
+    int numberValue;
     if (player)
     {
         // check that it's a valid move
@@ -75,6 +76,7 @@ char getMove(bool player, board *ptr)
             if ((index >= 65 && index <= 70) && ptr->getRockValue(index - 64) > 0)
             {
                 movecheck = false;
+                numberValue = index - 64;
             }
             else
             {
@@ -91,6 +93,7 @@ char getMove(bool player, board *ptr)
             if ((index >= 71 && index <= 76) && (ptr->getRockValue(index - 63) > 0))
             {
                 movecheck = false;
+                numberValue = index - 63;
             }
             else
             {
@@ -98,5 +101,5 @@ char getMove(bool player, board *ptr)
             }
         }
     }
-    return index;
+    return numberValue;
 }

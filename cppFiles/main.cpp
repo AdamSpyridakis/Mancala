@@ -5,10 +5,7 @@ int main() {
     board *ptrBoard;
 
     ptrBoard = &board1;
-
-    printBoard(ptrBoard);
-
-    getMove(true, ptrBoard);
+    startGame(ptrBoard);
     
     return 0;
 }
