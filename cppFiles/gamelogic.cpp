@@ -9,25 +9,18 @@ void startGame(board *ptrBoard)
     while (gameWon(ptrBoard, player))
     {
         selectedPile = getMove(player, ptrBoard);
-        processMove(ptrBoard, player, selectedPile);
+        player = processMove(ptrBoard, player, selectedPile);
         printBoard(ptrBoard);
-        if (player)
-        {
-            player = false;
-        }
-        else
-        {
-            player = true;
-        }
     }
 }
 
-void processMove(board *ptrBoard, bool player, int selectedPile)
+// Returns boolean corresponding to player whose turn is next
+bool processMove(board *ptrBoard, bool player, int selectedPile)
 {
     int distribute = ptrBoard->getRockValue(selectedPile);
     int currentVal{};
     ptrBoard->setRockValue(selectedPile, 0);
-    while (distribute >= 0)
+    while (distribute > 0)
     {
         selectedPile++;
         // loop back around
@@ -39,6 +32,19 @@ void processMove(board *ptrBoard, bool player, int selectedPile)
         currentVal++;
         ptrBoard->setRockValue(selectedPile, currentVal);
         distribute--;
+    }
+    // Check whether player gets another turn
+    if(player) {
+        if(selectedPile == 7) {
+            return true;
+        }
+        return false;
+    }
+    else {
+        if (selectedPile == 0) {
+            return false;
+        }
+        return true;
     }
 }
 

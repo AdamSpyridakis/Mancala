@@ -7,6 +7,6 @@
 
 void startGame(board* ptrBoard);
 bool gameWon(board* ptrBoard, bool player);
-void processMove(board *ptrBoard, bool player, int selectedPile);
+bool processMove(board *ptrBoard, bool player, int selectedPile);
 
 #endif
