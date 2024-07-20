@@ -11,10 +11,10 @@ class board  {
     // Set-up the starting amount of rocks in each pile
     board() {
         for(int i{1}; i<7; i++){
-            rocks[i] = 5;
+            rocks[i] = 4;
         }
         for(int i{8}; i<14; i++){
-            rocks[i] = 5;
+            rocks[i] = 4;
         }
     }
     int getRockValue(int pile) {
