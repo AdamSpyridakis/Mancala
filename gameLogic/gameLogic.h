@@ -5,7 +5,7 @@
 #include "..//boardClass/boardClass.h"
 #include "..//ASCIIBoard/printBoard.h"
 
-void startGame(board* ptrBoard);
+void startGame();
 bool gameWon(board* ptrBoard, bool player);
 bool processMove(board *ptrBoard, bool player, int selectedPile);
 
