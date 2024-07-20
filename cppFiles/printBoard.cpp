@@ -113,3 +113,15 @@ int getMove(bool player, board *ptr)
     }
     return numberValue;
 }
+
+void checkWinner(board* ptr) {
+    if(ptr->getRockValue(7) > ptr->getRockValue(0)) {
+        std::cout << "\nPlayer 1 wins!";
+    }
+    else if(ptr->getRockValue(0) > ptr->getRockValue(7)) {
+        std::cout << "\nPlayer 1 wins!";
+    }
+    else {
+        std::cout << "It's a draw!";
+    }
+}

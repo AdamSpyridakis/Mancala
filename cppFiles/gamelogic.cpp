@@ -1,7 +1,12 @@
 #include "..//gameLogic/gameLogic.h"
 
-void startGame(board *ptrBoard)
+void startGame()
 {
+    board board1;
+    board *ptrBoard;
+
+    ptrBoard = &board1;
+
     printBoard(ptrBoard);
 
     bool player{true};
@@ -16,6 +21,7 @@ void startGame(board *ptrBoard)
         player = processMove(ptrBoard, player, selectedPile);
         printBoard(ptrBoard);
     }
+    checkWinner(ptrBoard);
 }
 
 // Returns boolean corresponding to player whose turn is next

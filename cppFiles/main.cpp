@@ -1,11 +1,8 @@
 #include "..//main/main.h"
 
 int main() {
-    board board1;
-    board *ptrBoard;
 
-    ptrBoard = &board1;
-    startGame(ptrBoard);
+    startGame();
     
     return 0;
 }
