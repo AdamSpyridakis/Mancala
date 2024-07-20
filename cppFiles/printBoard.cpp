@@ -5,7 +5,8 @@ void printBoard(board *ptr)
 {
     // Make the indices for the top - to let players know what pile they select
     std::cout << "       ";
-    for(char letter{65}; letter<71; letter++){
+    for (char letter{65}; letter < 71; letter++)
+    {
         std::cout << letter << letter << "   ";
     }
     // Begin printing the board
@@ -37,7 +38,8 @@ void printBoard(board *ptr)
     {
         std::cout << "0";
     }
-    std::cout << ptr->getRockValue(0) << " |\n" << "|    ";
+    std::cout << ptr->getRockValue(0) << " |\n"
+              << "|    ";
     for (int i{8}; i < 14; i++)
     {
         std::cout << "| ";
@@ -52,7 +54,49 @@ void printBoard(board *ptr)
     std::cout << "|    |\n";
     // Make the indices for the bottom
     std::cout << "       ";
-    for(char letter{71}; letter<77; letter++){
+    for (char letter{71}; letter < 77; letter++)
+    {
         std::cout << letter << letter << "   ";
     }
+}
+
+// Send a move request to the terminal
+char getMove(bool player, board *ptr)
+{
+    char index{0};
+    bool movecheck{true};
+    if (player)
+    {
+        // check that it's a valid move
+        while (movecheck)
+        {
+            std::cout << "\nPlayer 1: Enter a rock index: ";
+            std::cin >> index;
+            if ((index >= 65 && index <= 70) && ptr->getRockValue(index - 64) > 0)
+            {
+                movecheck = false;
+            }
+            else
+            {
+                std::cout << "Invalid move. Try again";
+            }
+        }
+    }
+    else
+    {
+        while (movecheck)
+        {
+            std::cout << "\nPlayer 2: Enter a rock index: ";
+            std::cin >> index;
+            if ((index >= 71 && index <= 76) && (ptr->getRockValue(index - 63) > 0))
+            {
+                movecheck = false;
+            }
+            else
+            {
+                std::cout << "Invalid move. Try again";
+            }
+        }
+    }
+    return index;
 }

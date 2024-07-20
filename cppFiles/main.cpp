@@ -7,6 +7,8 @@ int main() {
     ptrBoard = &board1;
 
     printBoard(ptrBoard);
+
+    getMove(true, ptrBoard);
     
     return 0;
 }
