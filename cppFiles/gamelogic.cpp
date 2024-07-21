@@ -7,8 +7,6 @@ void startGame()
 
     ptrBoard = &board1;
 
-    // printBoard(ptrBoard);
-
     bool player{true};
     int selectedPile{};
     while (gameWon(ptrBoard, player))
