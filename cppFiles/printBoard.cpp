@@ -119,7 +119,7 @@ void checkWinner(board* ptr) {
         std::cout << "\nPlayer 1 wins!";
     }
     else if(ptr->getRockValue(0) > ptr->getRockValue(7)) {
-        std::cout << "\nPlayer 1 wins!";
+        std::cout << "\nPlayer 2 wins!";
     }
     else {
         std::cout << "It's a draw!";

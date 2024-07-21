@@ -7,21 +7,23 @@ void startGame()
 
     ptrBoard = &board1;
 
-    printBoard(ptrBoard);
+    // printBoard(ptrBoard);
 
     bool player{true};
     int selectedPile{};
     while (gameWon(ptrBoard, player))
     {
+        printBoard(ptrBoard);
         selectedPile = getMove(player, ptrBoard);
         /* Quit */
-        if(selectedPile == -1){
+        if (selectedPile == -1)
+        {
             return;
         }
         player = processMove(ptrBoard, player, selectedPile);
-        printBoard(ptrBoard);
     }
     checkWinner(ptrBoard);
+    printBoard(ptrBoard);
 }
 
 // Returns boolean corresponding to player whose turn is next
@@ -92,7 +94,7 @@ bool processMove(board *ptrBoard, bool player, int selectedPile)
 // Game ends when the player whose turn it is has no rocks left
 bool gameWon(board *ptrBoard, bool player)
 {
-    bool gameOver{false};
+    int currentVal{};
     if (player)
     {
         for (int i{1}; i <= 6; i++)
@@ -100,8 +102,13 @@ bool gameWon(board *ptrBoard, bool player)
             if (ptrBoard->getRockValue(i) != 0)
             {
                 // Player 1 has rocks, game not over
-                gameOver = true;
+                return true;
             }
+        }
+        for (int i{8}; i <= 13; i++)
+        {
+            currentVal = ptrBoard->getRockValue(0);
+            ptrBoard->setRockValue(0, currentVal + ptrBoard->getRockValue(i));
         }
     }
     else
@@ -111,9 +118,14 @@ bool gameWon(board *ptrBoard, bool player)
             if (ptrBoard->getRockValue(i) != 0)
             {
                 // Player 2 has rocks, game not over
-                gameOver = true;
+                return true;
             }
         }
+        for (int i{1}; i <= 6; i++)
+        {
+            currentVal = ptrBoard->getRockValue(7);
+            ptrBoard->setRockValue(7, currentVal + ptrBoard->getRockValue(i));
+        }
     }
-    return gameOver;
+    return false;
 }
