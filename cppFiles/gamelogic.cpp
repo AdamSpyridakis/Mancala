@@ -48,7 +48,7 @@ bool processMove(board *ptrBoard, bool player, int selectedPile)
     if (player)
     {
         // If the last rock was placed on your side, and there were no rocks present before
-        if ((selectedPile <= 6 && selectedPile >= 1) && ptrBoard->getRockValue(selectedPile) == 1)
+        if ((selectedPile <= 6 && selectedPile >= 1) && ptrBoard->getRockValue(selectedPile) == 1 && ptrBoard->getRockValue(14 - selectedPile) != 0)
         {
             currentScore = ptrBoard->getRockValue(7);
             // Add the rocks across to your pile
@@ -60,7 +60,7 @@ bool processMove(board *ptrBoard, bool player, int selectedPile)
     else
     {
         // If the last rock was placed on your side, and there were no rocks present before
-        if ((selectedPile <= 13 && selectedPile >= 8) && ptrBoard->getRockValue(selectedPile) == 1)
+        if ((selectedPile <= 13 && selectedPile >= 8) && ptrBoard->getRockValue(selectedPile) == 1 && ptrBoard->getRockValue(14 - selectedPile) != 0)
         {
             currentScore = ptrBoard->getRockValue(0);
             // Add the rocks across to your pile
